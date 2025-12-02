@@ -1,0 +1,5 @@
+{
+    "mypy.dmypyExecutable": "${workspaceFolder}/.venv/bin/dmypy",
+    "mypy.executable": "${workspaceFolder}/.venv/bin/mypy",
+    "python.analysis.typeCheckingMode": "basic"
+}
