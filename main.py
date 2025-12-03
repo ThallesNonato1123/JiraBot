@@ -12,7 +12,7 @@ if __name__ == "__main__":
         print("Nenhum PR detectado (variável vazia).")
         sys.exit(1)
 
-    github_client =  GithubClient(github_token, "ThallesNonato1123", "TESTE-BITRISE", pr_number)
+    github_client =  GithubClient(github_token, "ThallesNonato1123", "TESTE-BITRISE", int(pr_number))
     jira_tasks = github_client.getJirasAssociatedTasks()
     for task in jira_tasks:
         print(task)
