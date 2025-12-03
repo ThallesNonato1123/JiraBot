@@ -22,14 +22,17 @@ class JiraClient:
         return self.search_issues(jql, max_results=100)
     
     def get_jira_transitions(self, id):
+        """Busca as possíveis transições para um card'."""
         transitions = jira_client.jira.transitions(id)
         for t in transitions:
             print(f"{t['id']} - {t['name']}")
     
     def move_to_ready_to_release(self,id):
+        """Move o card para read to release"""
         self.jira.transition_issue(id, "561")
 
     def move_to_done(self,id):
+        """Move o card done"""
         self.jira.transition_issue(id, "571")
     
     def print_all_issues(self, project_key: str):

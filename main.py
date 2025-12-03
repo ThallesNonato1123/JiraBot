@@ -1,5 +1,6 @@
 import argparse
 from JiraClient import jira_client
+from GithubClient import GithubClient
 
 def build_parser():
     parser = argparse.ArgumentParser(description="CLI para o JiraBot")
@@ -7,11 +8,7 @@ def build_parser():
     return parser
 
 if __name__ == "__main__":
-    parser = build_parser()
-    args = parser.parse_args()
-
-    issue_id = args.issue_id
-    print("Issue informada:", issue_id)
-
-    jira = jira_client
-    jira.move_to_done(issue_id)
+    github_client =  GithubClient("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", "ThallesNonato1123", "TESTE-BITRISE", 2)
+    jira_tasks = github_client.getJirasAssociatedTasks()
+    for task in jira_tasks:
+        jira_client.move_to_done(task)
