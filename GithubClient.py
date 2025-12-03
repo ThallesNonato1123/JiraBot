@@ -13,7 +13,7 @@ class GithubClient:
             pr_number = self.prNumber
         return self.repo.get_pull(pr_number)
     
-    def getPrsAssociados(self):
+    def getAssociatedPrs(self):
         """Busca os PRs que foram associados a esse PR."""
         pr = self.getPullRequest()
         refs = re.findall(r"#(\d+)", pr.body)
@@ -26,7 +26,7 @@ class GithubClient:
     def getJirasAssociatedTasks(self):
         """Busca as Tasks do Jira associadas a um PR."""
         tasks_list = []
-        for numberPr in self.getPrsAssociados():
+        for numberPr in self.getAssociatedPrs():
             prName = self.getPullRequest(numberPr).head.ref
             task = prName.rsplit("/", 1)[-1]
             tasks_list.append(task)
