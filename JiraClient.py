@@ -1,6 +1,5 @@
 from jira import JIRA
 import os
-
 class JiraClient:
     def __init__(self, server: str, email: str, api_token: str):
         self.jira = JIRA(
@@ -42,9 +41,9 @@ class JiraClient:
             print(f"{issue.key} - {issue.fields.summary}- ({issue.fields.status.name})")
 
 api_token = os.getenv("JIRA_TEST")
-if(api_token is not None):
+if api_token is not None:
     jira_client = JiraClient(
         server="https://globo.atlassian.net",
         email="thalles.nonato@g.globo",
-        api_token= api_token
+        api_token=api_token
     )

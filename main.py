@@ -1,10 +1,8 @@
 from JiraClient import jira_client
 from GithubClient import GithubClient
-import os
 
 if __name__ == "__main__":
-    github_token = os.getenv("GITHUB_TEST")
-    github_client =  GithubClient(github_token, "ThallesNonato1123", "TESTE-BITRISE", 2)
+    github_client =  GithubClient("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", "ThallesNonato1123", "TESTE-BITRISE", 2)
     jira_tasks = github_client.getJirasAssociatedTasks()
     print(jira_tasks)
     # for task in jira_tasks:
