@@ -1,4 +1,5 @@
 from jira import JIRA
+import os
 
 class JiraClient:
     def __init__(self, server: str, email: str, api_token: str):
@@ -40,9 +41,10 @@ class JiraClient:
         for issue in issues:
             print(f"{issue.key} - {issue.fields.summary}- ({issue.fields.status.name})")
 
-
-jira_client = JiraClient(
-    server="https://globo.atlassian.net",
-    email="thalles.nonato@g.globo",
-    api_token="ATATT3xFfGF0ggSDMW7r7WhLO7GlZYD-a0O5Y3ud7UM2KohUfVDIDkya_gvbPC4U2fKKsGABGVwL8AXF90d9MwJ6GneV7LfNRJXLsC7P0uwVhwrlrwtefZ-p3aiQsJHPL0OFaNPmKnAf2RJhlpzltHCZsfNu4FuJo8--r2MUFTr-GXCABrjy5VU=6968F166"
-)
+api_token = os.getenv("JIRA_TEST")
+if(api_token is not None):
+    jira_client = JiraClient(
+        server="https://globo.atlassian.net",
+        email="thalles.nonato@g.globo",
+        api_token= api_token
+    )
