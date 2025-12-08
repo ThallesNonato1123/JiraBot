@@ -44,6 +44,6 @@ api_token = os.getenv("JIRA_TEST")
 if api_token is not None:
     jira_client = JiraClient(
         server="https://globo.atlassian.net",
-        email="thalles.nonato@g.globo",
+        email="globoplay.gitlab@g.globo",
         api_token=api_token
     )
