@@ -1,5 +1,6 @@
-from jira import JIRA
+from jira import JIRA 
 import os
+
 class JiraClient:
     def __init__(self, server: str, email: str, api_token: str):
         self.jira = JIRA(
@@ -39,8 +40,18 @@ class JiraClient:
         issues = self.jira.search_issues(f'project = {project_key}', maxResults=1000)
         for issue in issues:
             print(f"{issue.key} - {issue.fields.summary}- ({issue.fields.status.name})")
+    
+    def create_version(self, project_key: str, plattaform: str):
+        version = self.jira.create_version(
+            name = plattaform,
+            project = f"{project_key}",
+            description = "testando criar versao",
+        )
+    
+    def add_tasks_to_version(self, task, id, name):
+        return self.jira.issue(task).update(fields= {"fixVersions": [{"name": f"{name}", "id":f"{id}"}]})
 
-api_token = os.getenv("JIRA_TEST")
+api_token = "api_token"
 if api_token is not None:
     jira_client = JiraClient(
         server="https://globo.atlassian.net",
