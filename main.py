@@ -37,7 +37,6 @@ if __name__ == "__main__":
 
     github_client =  GithubClient(github_token, "globoi", "premiere-play-android")
     versionName = get_version_name("android")
-    versionName = "1.0.0"
     jiraVersion = jira_client.create_version(f"Premiere Android v{versionName}", "PTVE")
 
     for pr in prs:
