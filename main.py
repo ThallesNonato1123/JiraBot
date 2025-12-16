@@ -13,14 +13,16 @@ def get_version_name(device: str):
                     if match:
                         return match.group(1)
     
-    # elif (device == "ios"):
-    #     with open("../xcodegen/settings.yml") as f:
-    #         for line in f:
-    #             versionLine = f
-    #             return re.search(r'"([^"]+)"', versionLine)    
+    elif (device == "ios"):
+        with open("../xcodegen/settings.yml") as f:
+            for line in f:
+                if "&version" in line:
+                    match = re.search(r'"([^"]+)"', line)
+                    if match:
+                        return match.group(1)
 
 def create_jira_version():
-    jira_client.create_version("PTVE")
+    jira_client.create_version("PTVE", "Android" )
 
 if __name__ == "__main__":
     github_token = ""
@@ -35,6 +37,7 @@ if __name__ == "__main__":
 
     github_client =  GithubClient(github_token, "globoi", "premiere-play-android")
     versionName = get_version_name("android")
+    versionName = "1.0.0"
     jiraVersion = jira_client.create_version(f"Premiere Android v{versionName}", "PTVE")
 
     for pr in prs:

@@ -44,9 +44,11 @@ class JiraClient:
     def create_version(self, project_key: str, plattaform: str):
         version = self.jira.create_version(
             name = plattaform,
-            project = f"{project_key}",
+            project = project_key,
             description = "testando criar versao",
         )
+
+        return version
     
     def add_tasks_to_version(self, task, id, name):
         return self.jira.issue(task).update(fields= {"fixVersions": [{"name": f"{name}", "id":f"{id}"}]})
