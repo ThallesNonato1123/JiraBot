@@ -40,8 +40,12 @@ if __name__ == "__main__":
     jiraVersion = jira_client.create_version(f"Premiere Android v{versionName}", "PTVE")
 
     for pr in prs:
-        taskCode = github_client.getJiraTaskCode(pr)
-        jira_client.add_tasks_to_version(taskCode, jiraVersion.id, jiraVersion.name)
+        try:
+            taskCode = github_client.getJiraTaskCode(pr)
+            jira_client.add_tasks_to_version(taskCode, jiraVersion.id, jiraVersion.name)
+            jira_client.move_to_done(taskCode)
+        except:
+            print("An exception occured")
 
     ### primeiro colocar os cards na release (jira) (pr de release aberto)
     ## mover os cards para done (pr de release fechado)
